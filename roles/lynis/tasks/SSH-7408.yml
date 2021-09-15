@@ -1,0 +1,15 @@
+- name: "[SSH-7408] Harden SSH configuration"
+  lineinfile:
+    path: '/etc/ssh/sshd_config'
+    regexp: '^[#]?{{ item.key }}'
+    line: '{{ item.key }} {{ item.value }}'
+  with_items:
+    - {'key':'AllowTcpForwarding', 'value':'no'}
+    - {'key':'ClientAliveCountMax', 'value':'2'}
+    - {'key':'Compression', 'value':'no'}
+    - {'key':'LogLevel', 'value':'verbose'}
+    - {'key':'MaxAuthTries', 'value':'3'}
+    - {'key':'MaxSessions', 'value':'2'}
+    - {'key':'TCPKeepAlive', 'value':'no'}
+    - {'key':'X11Forwarding', 'value':'no'}
+    - {'key':'AllowAgentForwarding', 'value':'no'}

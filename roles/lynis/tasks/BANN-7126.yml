@@ -1,0 +1,7 @@
+- name: "[BANN-7126] Add legal banner to issue"
+  copy:
+    src: 'issue'
+    dest: '/etc/issue'
+    owner: root
+    group: root
+    mode: 0644

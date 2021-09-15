@@ -1,0 +1,18 @@
+# https://hoststud.com/resources/how-to-disable-core-dumps-in-linux-centos-server.292/
+- name: "[KRNL-5820] Disable core dumps in limits.conf"
+  lineinfile:
+    path: '/etc/security/limits.conf'
+    regexp: '^\*\s+hard\s+core'
+    line: '* hard core 0'
+
+- name: "[KRNL-5820] Disable core dumps in sysctl.conf"
+  lineinfile:
+    path: '/etc/sysctl.conf'
+    regexp: '^fs.suid_dumpable'
+    line: 'fs.suid_dumpable = 0'
+
+- name: "[KRNL-5820] Disable core dumps in profile"
+  lineinfile:
+    path: '/etc/profile'
+    regexp: '^ulimit -S -c'
+    line: 'ulimit -S -c 0'

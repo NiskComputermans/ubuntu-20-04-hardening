@@ -1,0 +1,4 @@
+- name: "[PKGS-7370] Install debsums to verify installed packages against a known good database"
+  apt:
+    name: debsums
+    state: present

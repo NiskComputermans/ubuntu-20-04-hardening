@@ -1,0 +1,11 @@
+- name: "[AUTH-9286] Configure minimum password age"
+  lineinfile:
+    path: '/etc/login.defs' 
+    regexp: '^[#]?PASS_MIN_DAYS'
+    line: 'PASS_MIN_DAYS 1'
+
+- name: "[AUTH-9286] Configure maximum password age"
+  lineinfile:
+    path: '/etc/login.defs' 
+    regexp: '^[#]?PASS_MAX_DAYS'
+    line: 'PASS_MAX_DAYS 365'

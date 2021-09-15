@@ -1,0 +1,4 @@
+- name: "[TIME-3185] Install chrony"
+  apt:
+    name: chrony
+    state: present

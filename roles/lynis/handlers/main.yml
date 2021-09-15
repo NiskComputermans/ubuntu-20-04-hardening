@@ -1,0 +1,18 @@
+---
+- name: 'Reload kernel modules'
+  debug:
+    msg: 'Reload kernel modules functionality not built'
+
+- name: 'Reload audit rules'
+  shell: augenrules --load
+
+- name: 'Restart auditd'
+  systemd:
+    name: auditd
+    state: restarted
+  
+- name: 'Reload sysctl'
+  shell: sysctl --system
+
+- name: 'Reload iptables'
+  shell: iptables-restore </etc/network/iptables.up.rules

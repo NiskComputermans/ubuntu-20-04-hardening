@@ -1,0 +1,7 @@
+- name: "[USB-1000] Disable USB storage"
+  lineinfile:
+    path: '/etc/modprobe.d/blacklist.conf' 
+    regexp: '^install usb-storage'
+    line: 'install usb-storage /bin/true'
+  notify:
+    - 'Reload kernel modules'

@@ -1,0 +1,4 @@
+- name: "[PKGS-7394] Install apt-show-versions for patch management"
+  apt:
+    name: apt-show-versions
+    state: present

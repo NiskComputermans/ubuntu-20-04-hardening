@@ -1,0 +1,7 @@
+- name: "[BANN-7130] Add legal banner to issue.net"
+  copy:
+    src: 'issue.net'
+    dest: '/etc/issue.net'
+    owner: root
+    group: root
+    mode: 0644

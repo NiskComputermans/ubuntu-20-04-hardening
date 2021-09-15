@@ -1,0 +1,6 @@
+- name: "[AUTH-9238] Configure default umask"
+  lineinfile:
+    path: '/etc/login.defs' 
+    regexp: '^[#]?UMASK'
+    line: 'UMASK 027'
+

@@ -1,0 +1,4 @@
+- name: "[ACCT-9622] Install acct"
+  apt:
+    name: acct
+    state: present

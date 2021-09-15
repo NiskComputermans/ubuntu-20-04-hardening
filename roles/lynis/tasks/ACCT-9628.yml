@@ -1,0 +1,4 @@
+- name: "[ACCT-9628] Install auditd"
+  apt:
+    name: auditd
+    state: present

@@ -1,0 +1,16 @@
+- name: "[ACCT-9626] Install sysstat"
+  apt:
+    name: sysstat
+    state: present
+
+- name: "[ACCT-9626] Configure sysstat in defaults"
+  lineinfile:
+    path: '/etc/default/sysstat'
+    regexp: '^ENABLED='
+    line: 'ENABLED="TRUE"'
+
+- name: "[ACCT-9626] Configure sysstat in defaults"
+  systemd:
+    name: sysstat
+    state: started
+    enabled: yes

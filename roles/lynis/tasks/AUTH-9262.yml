@@ -1,0 +1,4 @@
+- name: "[AUTH-9262] Install a PAM module for password strength testing"
+  apt:
+    name: libpam-cracklib
+    state: present

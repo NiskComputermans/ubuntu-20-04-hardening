@@ -1,0 +1,14 @@
+- name: "[FIRE-4512] Purge UFW with extreme prejudice"
+  apt:
+    name: ufw
+    state: absent
+
+- name: "[FIRE-4512] Install iptables rules"
+  copy:
+    src: iptables.rules.v4
+    dest: /etc/network/iptables.up.rules
+    owner: root
+    group: root
+    mode: 0640
+  notify:
+    - Reload iptables
