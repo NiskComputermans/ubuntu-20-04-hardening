@@ -1,0 +1,7 @@
+---
+- name: 'Restart sshd'
+  debug:
+    msg: "SSHD configuration changed. Reload SSHD for changes to take effect (this will cut any existing SSH connections)"
+# systemd:
+#   name: sshd
+#   state: restarted

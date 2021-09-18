@@ -1,0 +1,37 @@
+---
+- name: "Purge snapd cache"
+  file:
+    path: /var/cache/snapd
+    state: absent
+
+- name: "Purge default applications"
+  apt:
+    name: "{{ item }}"
+    state: absent
+    autoremove: yes
+    purge: yes
+  with_items:
+    - cloud-init
+    - snapd
+
+- name: "Unmount snapd mounts"
+  mount:
+    path: "{{ item.mount }}"
+    state: unmounted
+  with_items: "{{ ansible_facts['mounts'] }}"
+  when: item.mount is regex("^/snap")
+
+- name: "Purge remaining snapd files"
+  file:
+    path: /snap
+    state: absent
+
+- name: "Harden SSH configuration"
+  lineinfile:
+    path: '/etc/ssh/sshd_config'
+    regexp: '^[#]?{{ item.key }}'
+    line: '{{ item.key }} {{ item.value }}'
+  with_items:
+    - {'key':'PermitRootLogin', 'value':'no'}
+  notify:
+    - Restart sshd
