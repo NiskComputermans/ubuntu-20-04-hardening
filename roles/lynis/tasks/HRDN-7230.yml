@@ -1,0 +1,21 @@
+- name: "[HRDN-7230] Add gpg key for OSSEC"
+  apt_key:
+    url: "https://www.atomicorp.com/RPM-GPG-KEY.atomicorp.txt"
+    state: present
+
+- name: "[HRDN-7230] Add OSSEC apt repository"
+  apt_repository:
+          repo: "deb https://updates.atomicorp.com/channels/atomic/ubuntu {{ ansible_lsb['codename'] }} main"
+          state: present
+
+- name: "[HRDN-7230] Install OSSEC"
+  apt:
+    package: ossec-hids-agent
+    state: present
+    update_cache: yes
+
+- name: "[HRDN-7230] Install rkhunter"
+  apt:
+    package: rkhunter
+    state: present
+    update_cache: yes
