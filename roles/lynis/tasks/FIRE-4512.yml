@@ -3,10 +3,15 @@
     name: ufw
     state: absent
 
+- name: "[FIRE-4512] Install iptables-persistent"
+  apt:
+    name: iptables-persistent
+    state: present
+
 - name: "[FIRE-4512] Install iptables rules"
   copy:
     src: iptables.rules.v4
-    dest: /etc/network/iptables.up.rules
+    dest: /etc/iptables/rules.v4
     owner: root
     group: root
     mode: 0640
